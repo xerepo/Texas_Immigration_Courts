@@ -1,1 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Texas Immigration Courts Map</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+        #map { width: 100%; height: 600px; }
+    </style>
+</head>
+<body>
+    <h3>Texas Immigration Courts Map</h3>
+    <div id="map"></div>
+    <script>
+        var map = L.map('map').setView([31.9686, -99.9018], 6);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
 
+        var courts = [
+            {"name": "Conroe Immigration Court", "location": [30.3162, -95.4588]},
+            {"name": "Dallas Immigration Court", "location": [32.7767, -96.7970]},
+            {"name": "El Paso Immigration Court", "location": [31.7619, -106.4850]},
+            {"name": "El Paso Service Processing Center Immigration Court", "location": [31.7948, -106.3686]},
+            {"name": "Harlingen Immigration Court", "location": [26.1906, -97.6961]},
+            {"name": "Houston Immigration Court (Smith Street)", "location": [29.7604, -95.3698]},
+            {"name": "Houston Immigration Court (Gessner Road)", "location": [29.6796, -95.5401]},
+            {"name": "Houston Immigration Court (Greenspoint Park Drive)", "location": [29.9380, -95.4005]},
+            {"name": "Laredo Immigration Court", "location": [27.5036, -99.5075]},
+            {"name": "San Antonio Immigration Court", "location": [29.4241, -98.4936]},
+        ];
+
+        courts.forEach(function(court) {
+            L.marker(court.location).addTo(map)
+                .bindPopup(court.name);
+        });
+    </script>
+</body>
+</html>
